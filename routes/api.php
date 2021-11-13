@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return Auth::user()->tokens()->get();
+Route::middleware('auth:api')->prefix("v1")->group(function(){
+    Route::get('/workout', 'API\WorkoutController@index');
+    Route::post('/workout', 'API\WorkoutController@store');
+    Route::get('/user', function (Request $request) {
+        return Auth::user();
+    });
 });
