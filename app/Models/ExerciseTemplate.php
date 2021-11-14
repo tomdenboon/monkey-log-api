@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workout extends Model
-{   
+class ExerciseTemplate extends Model
+{
     use HasFactory;
 
     public function user(){
@@ -15,7 +15,7 @@ class Workout extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'is_template',
-        'user_id'
     ];
 }

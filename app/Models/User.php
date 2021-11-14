@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function workout(){
+        return $this->hasMany(Workout::class);
+    }
+    
     /**
      * The attributes that are mass assignable.
      *
