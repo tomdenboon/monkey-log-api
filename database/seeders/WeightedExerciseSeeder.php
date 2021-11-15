@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\WeightedExercise;
 
-class FieldTemplateSeeder extends Seeder
+class WeightedExerciseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,5 +15,9 @@ class FieldTemplateSeeder extends Seeder
     public function run()
     {
         //
+        WeightedExercise::create([
+            'name' => 'Bench Press',
+            'user_id' => '1'
+        ]);
     }
 }

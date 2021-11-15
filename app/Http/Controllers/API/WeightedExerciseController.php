@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\FieldTemplate;
+use App\Models\WeightedExercise;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\WeightedExerciseResource;
 
-class FieldTemplateController extends Controller
+class WeightedExerciseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class FieldTemplateController extends Controller
      */
     public function index()
     {
-        //
+        $weighted_exercises = auth()->user()->weightedExercises()->get();
+        return WeightedExerciseResource::collection($weighted_exercises);
     }
 
     /**
@@ -35,16 +38,17 @@ class FieldTemplateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $weighted_exercise = auth()->user()->weightedExercises()->create($request->all())->refresh();
+        return new WeightedExerciseResource($weighted_exercise);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FieldTemplate  $fieldTemplate
+     * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function show(FieldTemplate $fieldTemplate)
+    public function show(WeightedExercise $weightedExercise)
     {
         //
     }
@@ -52,10 +56,10 @@ class FieldTemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FieldTemplate  $fieldTemplate
+     * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function edit(FieldTemplate $fieldTemplate)
+    public function edit(WeightedExercise $weightedExercise)
     {
         //
     }
@@ -64,10 +68,10 @@ class FieldTemplateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FieldTemplate  $fieldTemplate
+     * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FieldTemplate $fieldTemplate)
+    public function update(Request $request, WeightedExercise $weightedExercise)
     {
         //
     }
@@ -75,10 +79,10 @@ class FieldTemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FieldTemplate  $fieldTemplate
+     * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FieldTemplate $fieldTemplate)
+    public function destroy(WeightedExercise $weightedExercise)
     {
         //
     }

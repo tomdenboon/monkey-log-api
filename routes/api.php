@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', 'API\AuthController@register');
-Route::post('/login', 'API\AuthController@login');
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
 
 Route::middleware('auth:api')->prefix("v1")->group(function(){
-    Route::get('/workout', 'API\WorkoutController@index');
-    Route::post('/workout', 'API\WorkoutController@store');
+    Route::get('/workout', 'Api\WorkoutController@index');
+    Route::post('/workout', 'Api\WorkoutController@store');
+    Route::get('/weightedExercise', 'Api\WeightedExerciseController@index');
+    Route::post('/weightedExercise', 'Api\WeightedExerciseController@store');
     Route::get('/user', function (Request $request) {
         return Auth::user();
     });

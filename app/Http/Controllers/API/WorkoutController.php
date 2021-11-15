@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Models\Workout;
 use App\Http\Controllers\Controller;
@@ -15,13 +15,10 @@ class WorkoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $workouts = auth()->user()->workout()->get(); 
-        return response([ 
-            'workouts' => WorkoutResource::collection($workouts),
-            'message' => "Retrieved Succesfully"
-        ], 200);
+        $workouts = auth()->user()->workouts()->get(); 
+        return WorkoutResource::collection($workouts);
     }
 
     /**
@@ -42,19 +39,8 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
-            'name' => 'required|max:255',
-        ]);
-        if($validator->fails()){
-            return response(['error' => $validator->errors(), 'Validation Error']);
-        }
-
-        $data['user_id'] = $request->user()->id;
-        $workout = Workout::create($data);
-
-        return response([ 'workout' => new WorkoutResource($workout), 'message' => 'Created successfully'], 200);
+        $workout = auth()->user()->workouts()->create($request->all());
+        return new WorkoutResource($workout);
     }
 
     /**

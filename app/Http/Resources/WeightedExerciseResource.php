@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WorkoutResource extends JsonResource
+class WeightedExerciseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,12 @@ class WorkoutResource extends JsonResource
     {
         return  [
             'name' => $this->name,
-            'is_template' => $this->is_template,
-            'completed_at' => $this->completed_at,
+            'reps_is_visible' => $this->reps_is_visible,
+            'weight_is_visible' => $this->weight_is_visible,
+            'one_rm_is_visible' => $this->one_rm_is_visible,
+            'rpe_is_visible' => $this->rpe_is_visible,
+            'notes_is_visible' => $this->notes_is_visible,
         ];
     }
 }
+

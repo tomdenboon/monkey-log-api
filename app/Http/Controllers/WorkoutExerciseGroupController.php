@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExerciseTemplate;
-use App\Http\Controllers\Controller;
+use App\Models\WorkoutExerciseGroup;
 use Illuminate\Http\Request;
 
-class ExerciseTemplateController extends Controller
+class WorkoutExerciseGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,28 +35,16 @@ class ExerciseTemplateController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
-            'name' => 'required|max:255',
-        ]);
-        if($validator->fails()){
-            return response(['error' => $validator->errors(), 'Validation Error']);
-        }
-
-        $data['user_id'] = $request->user()->id;
-        $exerciseTemplate = ExerciseTemplate::create($data);
-
-        return response([ 'exercise_template' => new ExerciseTemplate($workout), 'message' => 'Created successfully'], 200);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ExerciseTemplate  $exerciseTemplate
+     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(ExerciseTemplate $exerciseTemplate)
+    public function show(WorkoutExerciseGroup $workoutExerciseGroup)
     {
         //
     }
@@ -65,10 +52,10 @@ class ExerciseTemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ExerciseTemplate  $exerciseTemplate
+     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExerciseTemplate $exerciseTemplate)
+    public function edit(WorkoutExerciseGroup $workoutExerciseGroup)
     {
         //
     }
@@ -77,10 +64,10 @@ class ExerciseTemplateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ExerciseTemplate  $exerciseTemplate
+     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExerciseTemplate $exerciseTemplate)
+    public function update(Request $request, WorkoutExerciseGroup $workoutExerciseGroup)
     {
         //
     }
@@ -88,10 +75,10 @@ class ExerciseTemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ExerciseTemplate  $exerciseTemplate
+     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExerciseTemplate $exerciseTemplate)
+    public function destroy(WorkoutExerciseGroup $workoutExerciseGroup)
     {
         //
     }
