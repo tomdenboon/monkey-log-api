@@ -13,6 +13,11 @@ class Workout extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function workoutExerciseGroups(){
+        return $this->hasMany(WorkoutExerciseGroup::class);
+    }
+
+
     protected $fillable = [
         'name',
         'is_template',

@@ -13,6 +13,10 @@ class WeightedExercise extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     
+    public function workoutExerciseGroups(){
+        return $this->hasMany(workoutExerciseGroup::class);
+    }
+
     protected $fillable = [
         'name',
         'user_id',

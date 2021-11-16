@@ -15,12 +15,12 @@ class CreateWorkoutExerciseGroupsTable extends Migration
     {
         Schema::create('workout_exercise_groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('workout_id');
             $table->unsignedBigInteger('weighted_exercise_id');
             $table->integer('order');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('workout_id')->references('id')->on('workouts')->onDelete('cascade');
             $table->foreign('weighted_exercise_id')->references('id')->on('weighted_exercises')->onDelete('cascade');
         });
     }
