@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -12,8 +13,8 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:55',
-            'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'email' => 'email:rfc,dns|required|unique:users',
+            'password' => 'required|confirmed|min:6'
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
@@ -32,11 +33,12 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials']);
+            return response(['message' => 'Invalid Credentials'], 422);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $user = auth()->user();
+        $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(['user' => new UserResource($user), 'access_token' => $accessToken]);
     }
 }
