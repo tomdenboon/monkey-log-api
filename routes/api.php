@@ -21,8 +21,10 @@ Route::prefix("v1")->group(function(){
 Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::get('/workout', 'Api\WorkoutController@index');
     Route::post('/workout', 'Api\WorkoutController@store');
-    Route::get('/weightedExercise', 'Api\WeightedExerciseController@index');
-    Route::post('/weightedExercise', 'Api\WeightedExerciseController@store');
+    Route::get('/workout_template', 'Api\WorkoutController@templateIndex');
+    Route::post('/workout/{id}/workout_exercise_group', 'Api\WorkoutController@store');
+    Route::get('/weighted_exercise', 'Api\WeightedExerciseController@index');
+    Route::post('/weighted_exercise', 'Api\WeightedExerciseController@store');
     Route::get('/user', function (Request $request) {
         return Auth::user();
     });

@@ -21,6 +21,12 @@ class WorkoutController extends Controller
         return WorkoutResource::collection($workouts);
     }
 
+    public function templateIndex()
+    {
+        $workouts = auth()->user()->workouts()->where('is_template', true)->get();
+        return WorkoutResource::collection($workouts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

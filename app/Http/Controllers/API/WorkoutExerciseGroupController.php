@@ -34,9 +34,14 @@ class WorkoutExerciseGroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $workout_id)
     {
-        //
+        $group = WorkoutExerciseGroup::create([
+            'workout_id' => $workout_id,
+            'weighted_exercise_id' => $request->$weighted_exercise_id,
+            'order' => $request->$order,
+        ]);  
+        return $group;
     }
 
     /**
