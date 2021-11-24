@@ -22,9 +22,9 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::get('/workout', 'Api\WorkoutController@index');
     Route::post('/workout', 'Api\WorkoutController@store');
     Route::get('/workout_template', 'Api\WorkoutController@templateIndex');
-    Route::post('/workout/{id}/exercise_group', 'Api\WorkoutExerciseGroupController@store');
-    Route::get('/weighted_exercise', 'Api\WeightedExerciseController@index');
-    Route::post('/weighted_exercise', 'Api\WeightedExerciseController@store');
+    Route::post('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@store');
+    Route::get('/exercise', 'Api\ExerciseController@index');
+    Route::post('/exercise', 'Api\ExerciseController@store');
     Route::get('/user', function (Request $request) {
         return Auth::user();
     });
