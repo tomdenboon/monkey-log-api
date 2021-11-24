@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\WeightedExercise;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\WeightedExerciseResource;
+use Illuminate\Http\Request;
 
 class WeightedExerciseController extends Controller
 {
@@ -16,8 +15,7 @@ class WeightedExerciseController extends Controller
      */
     public function index()
     {
-        $weighted_exercises = auth()->user()->weightedExercises()->get();
-        return WeightedExerciseResource::collection($weighted_exercises);
+        //
     }
 
     /**
@@ -38,8 +36,7 @@ class WeightedExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        $weighted_exercise = auth()->user()->weightedExercises()->create($request->all())->refresh();
-        return new WeightedExerciseResource($weighted_exercise);
+        //
     }
 
     /**

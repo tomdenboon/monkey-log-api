@@ -16,8 +16,8 @@ class User extends Authenticatable
         return $this->hasMany(Workout::class);
     }
 
-    public function weightedExercises(){
-        return $this->hasMany(WeightedExercise::class);
+    public function Exercises(){
+        return $this->hasMany(Exercise::class);
     }
 
     /**

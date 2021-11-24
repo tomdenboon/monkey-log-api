@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workout extends Model
-{   
+class WeightedExercise extends Model
+{
     use HasFactory;
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    
     public function exerciseGroups(){
-        return $this->hasMany(ExerciseGroup::class);
+        return $this->hasMany(exerciseGroup::class);
     }
-
 
     protected $fillable = [
         'name',
-        'is_template',
-        'user_id'
+        'user_id',
     ];
 }

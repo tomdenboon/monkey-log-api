@@ -9,22 +9,21 @@ class WorkoutExerciseGroup extends Model
 {
     use HasFactory;
 
-    public function weightedExercise(){
-        return $this->belongsTo(User::class, 'weighted_exercise_id');
+    public function exercise(){
+        return $this->belongsTo(Exercise::class, 'exercise_id');
     }
 
     public function workout(){
         return $this->belongsTo(Workout::class, 'workout_id');
     }
 
-    public function workoutWeightedExercises(){
-        return $this->hasMany(WorkoutWeightedExercises::class);
+    public function weightedExercises(){
+        return $this->hasMany(WeightedExercises::class);
     }
 
     protected $fillable = [
         'workout_id',
         'weighted_exercise_id',
-        'name',
         'order',
     ];
 }

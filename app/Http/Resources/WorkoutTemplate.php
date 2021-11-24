@@ -17,7 +17,7 @@ class WorkoutResource extends JsonResource
         return  [
             'name' => $this->name,
             'is_template' => $this->is_template,
-            'exercises' => $this->workoutExerciseGroups()->get(),
+            'exercises' => $this->exerciseGroups()->get(),
         ];
     }
 }

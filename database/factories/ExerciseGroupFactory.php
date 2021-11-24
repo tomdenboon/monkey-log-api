@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WorkoutExerciseGroupFactory extends Factory
+class ExerciseGroupFactory extends Factory
 {
     /**
      * Define the model's default state.

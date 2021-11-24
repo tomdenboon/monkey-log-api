@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\WorkoutWeightedExercise;
-use App\Http\Controllers\Controller;
+use App\Models\Exercise;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ExerciseResource;
 
-class WorkoutWeightedExerciseController extends Controller
+class ExerciseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,8 @@ class WorkoutWeightedExerciseController extends Controller
      */
     public function index()
     {
-        //
+        $exercises = auth()->user()->exercises()->get();
+        return ExerciseResource::collection($exercises);
     }
 
     /**
@@ -36,16 +38,17 @@ class WorkoutWeightedExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exercise = auth()->user()->exercises()->create($request->all())->refresh();
+        return new ExerciseResource($exercise);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WorkoutWeightedExercise  $workoutWeightedExercise
+     * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkoutWeightedExercise $workoutWeightedExercise)
+    public function show(Exercise $exercise)
     {
         //
     }
@@ -53,10 +56,10 @@ class WorkoutWeightedExerciseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WorkoutWeightedExercise  $workoutWeightedExercise
+     * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function edit(WorkoutWeightedExercise $workoutWeightedExercise)
+    public function edit(Exercise $exercise)
     {
         //
     }
@@ -65,10 +68,10 @@ class WorkoutWeightedExerciseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WorkoutWeightedExercise  $workoutWeightedExercise
+     * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkoutWeightedExercise $workoutWeightedExercise)
+    public function update(Request $request, Exercise $exercise)
     {
         //
     }
@@ -76,10 +79,10 @@ class WorkoutWeightedExerciseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WorkoutWeightedExercise  $workoutWeightedExercise
+     * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WorkoutWeightedExercise $workoutWeightedExercise)
+    public function destroy(Exercise $exercise)
     {
         //
     }

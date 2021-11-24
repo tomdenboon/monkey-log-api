@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\WorkoutExerciseGroup;
+use App\Models\ExerciseGroup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class WorkoutExerciseGroupController extends Controller
+class ExerciseGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +36,9 @@ class WorkoutExerciseGroupController extends Controller
      */
     public function store(Request $request, $workout_id)
     {
-        $group = WorkoutExerciseGroup::create([
+        $group = ExerciseGroup::create([
             'workout_id' => $workout_id,
-            'weighted_exercise_id' => $request->$weighted_exercise_id,
+            'exercise_id' => $request->$exercise_id,
             'order' => $request->$order,
         ]);  
         return $group;
@@ -47,10 +47,10 @@ class WorkoutExerciseGroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
+     * @param  \App\Models\ExerciseGroup  $exerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkoutExerciseGroup $workoutExerciseGroup)
+    public function show(ExerciseGroup $exerciseGroup)
     {
         //
     }
@@ -58,10 +58,10 @@ class WorkoutExerciseGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
+     * @param  \App\Models\ExerciseGroup  $exerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(WorkoutExerciseGroup $workoutExerciseGroup)
+    public function edit(ExerciseGroup $exerciseGroup)
     {
         //
     }
@@ -70,10 +70,10 @@ class WorkoutExerciseGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
+     * @param  \App\Models\ExerciseGroup  $exerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkoutExerciseGroup $workoutExerciseGroup)
+    public function update(Request $request, ExerciseGroup $exerciseGroup)
     {
         //
     }
@@ -81,10 +81,10 @@ class WorkoutExerciseGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WorkoutExerciseGroup  $workoutExerciseGroup
+     * @param  \App\Models\ExerciseGroup  $exerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WorkoutExerciseGroup $workoutExerciseGroup)
+    public function destroy(ExerciseGroup $exerciseGroup)
     {
         //
     }

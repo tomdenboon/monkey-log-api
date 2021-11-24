@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkoutWeightedExercisesTable extends Migration
+class CreateWeightedExercisesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWorkoutWeightedExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('workout_weighted_exercises', function (Blueprint $table) {
+        Schema::create('weighted_exercises', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('workout_exercise_group_id');
+            $table->unsignedBigInteger('exercise_group_id');
             $table->integer('reps')->nullable();
             $table->integer('weight')->nullable();
             $table->integer('one_rm')->nullable();
@@ -25,7 +25,7 @@ class CreateWorkoutWeightedExercisesTable extends Migration
             $table->boolean('is_lifted')->nullable();
             $table->timestamps();
 
-            $table->foreign('workout_exercise_group_id')->references('id')->on('workout_exercise_groups')->onDelete('cascade');
+            $table->foreign('exercise_group_id')->references('id')->on('exercise_groups')->onDelete('cascade');
         });
     }
 
@@ -36,6 +36,6 @@ class CreateWorkoutWeightedExercisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workout_weighted_exercises');
+        Schema::dropIfExists('weighted_exercises');
     }
 }
