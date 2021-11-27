@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Workout;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WorkoutResource;
+use App\Http\Resources\FullWorkoutResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +25,7 @@ class WorkoutController extends Controller
     public function templateIndex()
     {
         $workouts = auth()->user()->workouts()->where('is_template', true)->get();
-        return WorkoutResource::collection($workouts);
+        return FullWorkoutResource::collection($workouts);
     }
 
     /**
@@ -55,9 +56,9 @@ class WorkoutController extends Controller
      * @param  \App\Models\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function show(Workout $workout)
-    {
-        //
+    public function show($id)
+    {   
+        return new FullWorkoutResource(Workout::findOrFail($id));
     }
 
     /**

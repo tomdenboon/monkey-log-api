@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\WeightedExercise;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WeightedExerciseResource;
 use Illuminate\Http\Request;
 
 class WeightedExerciseController extends Controller
@@ -34,9 +35,15 @@ class WeightedExerciseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $exercise_group_id)
     {
-        //
+        $weighted_exercise = WeightedExercise::create([
+            'exercise_group_id' => $exercise_group_id,
+            'reps' => $request->reps,
+            'weight' => $request->weight,
+            'order' => $request->order,
+        ]);
+        return new WeightedExerciseResource($weighted_exercise->refresh());
     }
 
     /**
@@ -68,9 +75,11 @@ class WeightedExerciseController extends Controller
      * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WeightedExercise $weightedExercise)
+    public function update(Request $request, $id)
     {
-        //
+        $weighted_exercise = WeightedExercise::find($id);
+        $weighted_exercise->update($request->all());
+        return new WeightedExerciseResource($weighted_exercise);
     }
 
     /**
@@ -79,8 +88,8 @@ class WeightedExerciseController extends Controller
      * @param  \App\Models\WeightedExercise  $weightedExercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WeightedExercise $weightedExercise)
+    public function destroy($id)
     {
-        //
+        WeightedExercise::find($id)->delete();
     }
 }

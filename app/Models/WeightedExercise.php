@@ -14,11 +14,11 @@ class WeightedExercise extends Model
     }
 
     protected $fillable = [
+        'exercise_group_id',
         'reps',
         'weight',
         'one_rm',
         'rpe',
-        'notes',
         'order',
         'is_lifted',
     ];

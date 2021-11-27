@@ -14,7 +14,7 @@ class Exercise extends Model
     }
     
     public function exerciseGroups(){
-        return $this->hasMany(exerciseGroup::class);
+        return $this->hasMany(ExerciseGroup::class);
     }
 
     protected $fillable = [

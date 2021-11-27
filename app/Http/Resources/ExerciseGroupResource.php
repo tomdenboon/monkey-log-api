@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ExerciseResource extends JsonResource
+class ExerciseGroupResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,11 @@ class ExerciseResource extends JsonResource
     {
         return  [
             'id' => $this->id,
-            'name' => $this->name,
+            'workout_id' => $this->workout_id,
+            'name' => $this->exercise->name,
+            'order' => $this->order,
+            'sets' => $this->weightedExercises->count(),
+            'weighted_exercises' => WeightedExerciseResource::collection($this->weightedExercises),
         ];
     }
 }
-

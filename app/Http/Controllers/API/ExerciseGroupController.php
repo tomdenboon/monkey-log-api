@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\ExerciseGroup;
+use App\Http\Resources\ExerciseGroupResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,10 @@ class ExerciseGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($workout_id)
     {
-        //
+        $exercise_groups = ExerciseGroup::where('workout_id', $workout_id)->get();
+        return ExerciseGroupResource::collection($exercise_groups);
     }
 
     /**
@@ -38,10 +40,13 @@ class ExerciseGroupController extends Controller
     {
         $group = ExerciseGroup::create([
             'workout_id' => $workout_id,
-            'exercise_id' => $request->$exercise_id,
-            'order' => $request->$order,
+            'exercise_id' => $request->exercise_id,
+            'order' => $request->order,
         ]);  
-        return $group;
+        $group->weightedExercises()->create([
+            'order' => 1,
+        ]);
+        return new ExerciseGroupResource($group);
     }
 
     /**
@@ -84,8 +89,8 @@ class ExerciseGroupController extends Controller
      * @param  \App\Models\ExerciseGroup  $exerciseGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExerciseGroup $exerciseGroup)
+    public function destroy($id)
     {
-        //
+        ExerciseGroup::find($id)->delete();
     }
 }

@@ -20,7 +20,6 @@ class CreateWeightedExercisesTable extends Migration
             $table->integer('weight')->nullable();
             $table->integer('one_rm')->nullable();
             $table->integer('rpe')->nullable();
-            $table->string('notes')->nullable();
             $table->integer('order');
             $table->boolean('is_lifted')->nullable();
             $table->timestamps();

@@ -18,12 +18,12 @@ class ExerciseGroup extends Model
     }
 
     public function weightedExercises(){
-        return $this->hasMany(WeightedExercises::class);
+        return $this->hasMany(WeightedExercise::class);
     }
 
     protected $fillable = [
         'workout_id',
-        'weighted_exercise_id',
+        'exercise_id',
         'order',
     ];
 }
