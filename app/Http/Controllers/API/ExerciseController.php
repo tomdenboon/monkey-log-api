@@ -82,8 +82,8 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exercise $exercise)
+    public function destroy($id)
     {
-        //
+        Exercise::find($id)->delete();
     }
 }
