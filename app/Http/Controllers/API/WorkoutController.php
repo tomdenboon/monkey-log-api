@@ -28,70 +28,44 @@ class WorkoutController extends Controller
         return FullWorkoutResource::collection($workouts);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $workout = auth()->user()->workouts()->create($request->all());
         return new WorkoutResource($workout);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Workout  $workout
-     * @return \Illuminate\Http\Response
-     */
+    public function clone($id)
+    {
+
+        $workout = Workout::findOrFail($id);
+        $newWorkout = $workout->replicateWorkout();
+        return new FullWorkoutResource($newWorkout);
+    }
+
     public function show($id)
     {   
         return new FullWorkoutResource(Workout::findOrFail($id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Workout  $workout
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Workout $workout)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Workout  $workout
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Workout $workout)
+    public function update(Request $request, $id)
     {
-        //
+        $workout = Workout::find($id);
+        $workout->update($request->all());
+        return new WorkoutResource($workout);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Workout  $workout
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Workout $workout)
+    public function destroy($id)
     {
-        //
+        Workout::find($id)->delete();
     }
 }

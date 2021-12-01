@@ -90,6 +90,6 @@ class WeightedExerciseController extends Controller
      */
     public function destroy($id)
     {
-        WeightedExercise::find($id)->delete();
+        $weighted_exercise = WeightedExercise::find($id)->delete();
     }
 }

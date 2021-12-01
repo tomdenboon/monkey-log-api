@@ -22,8 +22,11 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::get('/workout', 'Api\WorkoutController@index');
     Route::post('/workout', 'Api\WorkoutController@store');
     Route::get('/workout/{id}', 'Api\WorkoutController@show');
+    Route::put('/workout/{id}', 'Api\WorkoutController@update');
+    Route::delete('/workout/{id}', 'Api\WorkoutController@destroy');
 
-    Route::get('/workout_template', 'Api\WorkoutController@templateIndex');
+    Route::get('/template', 'Api\WorkoutController@templateIndex');
+    Route::post('/template/{id}/clone', 'Api\WorkoutController@clone');
 
     Route::delete('/exercise_group/{id}', 'Api\ExerciseGroupController@destroy');
     Route::get('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@index');

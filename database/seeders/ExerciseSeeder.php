@@ -20,23 +20,23 @@ class ExerciseSeeder extends Seeder
             'user_id' => '1'
         ]);
         Exercise::create([
-            'name' => 'Press',
+            'name' => 'Pull up',
             'user_id' => '1'
         ]);
         Exercise::create([
-            'name' => 'Bench Presse',
+            'name' => 'Chin up',
             'user_id' => '1'
         ]);
         Exercise::create([
-            'name' => 'Bench Presser',
+            'name' => 'Squat',
             'user_id' => '1'
         ]);
         Exercise::create([
-            'name' => 'Bench Pressssss',
+            'name' => 'Deadlift',
             'user_id' => '1'
         ]);
         Exercise::create([
-            'name' => 'Bench Press1',
+            'name' => 'Overhead press',
             'user_id' => '1'
         ]);
     }

@@ -17,6 +17,19 @@ class Workout extends Model
         return $this->hasMany(ExerciseGroup::class);
     }
 
+    public function replicateWorkout(){
+        $newWorkout = $this->replicate();
+        $newWorkout->name = $newWorkout->name.' Copy';
+        $newWorkout->save();
+        forEach($this->exerciseGroups as $exerciseGroup){
+            $newExerciseGroup = $newWorkout->exerciseGroups()->create($exerciseGroup->toArray());
+            forEach($exerciseGroup->weightedExercises as $weightedExercise){
+                $newExerciseGroup->weightedExercises()->create($weightedExercise->toArray());
+            }
+
+        }
+        return $newWorkout;
+    }
 
     protected $fillable = [
         'name',
