@@ -19,22 +19,28 @@ Route::prefix("v1")->group(function(){
 });
 
 Route::middleware('auth:api')->prefix("v1")->group(function(){
-    Route::get('/workout', 'Api\WorkoutController@index');
-    Route::post('/workout', 'Api\WorkoutController@store');
-    Route::get('/workout/{id}', 'Api\WorkoutController@show');
     Route::put('/workout/{id}', 'Api\WorkoutController@update');
+    Route::get('/workout/{id}', 'Api\WorkoutController@show');
     Route::delete('/workout/{id}', 'Api\WorkoutController@destroy');
 
-    Route::get('/template', 'Api\WorkoutController@templateIndex');
-    Route::post('/template/{id}/clone', 'Api\WorkoutController@clone');
+    Route::get('/template', 'Api\TemplateController@index');
+    Route::get('/template/{id}', 'Api\TemplateController@show');
+    Route::post('/template', 'Api\TemplateController@store');
+    Route::post('/template/{id}/clone', 'Api\TemplateController@clone');
 
-    Route::delete('/exercise_group/{id}', 'Api\ExerciseGroupController@destroy');
+    //Route::get('/active', 'Api\WorkoutController@templateIndex');
+    //Route::post('/template/{id}/start', 'Api\WorkoutController@clone');
+
+    //Route::get('/finish', 'Api\WorkoutController@templateIndex');
+    //Route::post('/active/end', 'Api\WorkoutController@templateIndex');
+
     Route::get('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@index');
     Route::post('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@store');
+    Route::delete('/exercise_group/{id}', 'Api\ExerciseGroupController@destroy');
 
+    Route::post('/exercise_group/{id}/weighted_exercise', 'Api\WeightedExerciseController@store');
     Route::put('/weighted_exercise/{id}', 'Api\WeightedExerciseController@update');
     Route::delete('/weighted_exercise/{id}', 'Api\WeightedExerciseController@destroy');
-    Route::post('/exercise_group/{id}/weighted_exercise', 'Api\WeightedExerciseController@store');
 
     Route::get('/exercise', 'Api\ExerciseController@index');
     Route::post('/exercise', 'Api\ExerciseController@store');

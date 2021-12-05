@@ -11,40 +11,9 @@ use Illuminate\Support\Facades\Validator;
 
 class WorkoutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $workouts = auth()->user()->workouts()->get(); 
-        return WorkoutResource::collection($workouts);
-    }
-
-    public function templateIndex()
-    {
-        $workouts = auth()->user()->workouts()->where('is_template', true)->get();
-        return FullWorkoutResource::collection($workouts);
-    }
-
     public function create()
     {
         //
-    }
-
-    public function store(Request $request)
-    {
-        $workout = auth()->user()->workouts()->create($request->all());
-        return new WorkoutResource($workout);
-    }
-
-    public function clone($id)
-    {
-
-        $workout = Workout::findOrFail($id);
-        $newWorkout = $workout->replicateWorkout();
-        return new FullWorkoutResource($newWorkout);
     }
 
     public function show($id)
@@ -66,6 +35,8 @@ class WorkoutController extends Controller
 
     public function destroy($id)
     {
-        Workout::find($id)->delete();
+        $workout = Workout::findOrFail($id);
+        $workout->workoutable->delete();
+        $workout->delete();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FullWorkoutResource extends JsonResource
+class TemplateResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,7 @@ class FullWorkoutResource extends JsonResource
     {
         return  [
             'id' => $this->id,
-            'name' => $this->name,
-            'exercise_groups' => ExerciseGroupResource::collection($this->exerciseGroups),
+            'workout' => new FullWorkoutResource($this->workout)
         ];
     }
 }

@@ -12,11 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function workouts(){
-        return $this->hasMany(Workout::class);
+    public function templates(){
+        return $this->hasMany(Template::class);
     }
 
-    public function Exercises(){
+    public function exercises(){
         return $this->hasMany(Exercise::class);
     }
 
