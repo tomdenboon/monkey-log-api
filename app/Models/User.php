@@ -16,6 +16,14 @@ class User extends Authenticatable
         return $this->hasMany(Template::class);
     }
 
+    public function active(){
+        return $this->hasOne(Active::class);
+    }
+
+    public function completes(){
+        return $this->hasMany(Complete::class);
+    }
+
     public function exercises(){
         return $this->hasMany(Exercise::class);
     }

@@ -22,14 +22,20 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         $template = auth()->user()->templates()->create([]);
-        $template->workout->create($request->all());
+        $template->workout()->create($request->all());
         return new TemplateResource($template);
     }
 
     public function clone($id)
     {
         $template = Template::findOrFail($id);
-        $newTemplate = $template->workout->tonewTemplate();
+        $newTemplate = Template::create([
+            'user_id' => 1,
+        ]);
+        $newWorkout = $template->workout->clone();
+        $newWorkout->workoutable()->associate($newTemplate);
+        $newWorkout->name = $newWorkout->name.' Copy';
+        $newWorkout->save();
         return new TemplateResource($newTemplate);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class Template extends Model
+class Active extends Model
 {
     use HasFactory;
 
@@ -19,25 +19,22 @@ class Template extends Model
         return $this->morphOne(Workout::class, 'workoutable');
     }
 
-    public function toActive(){
+    public function complete(){
         return DB::transaction(function() {
             $user_id = $this->user->id;
-            if($this->user->active){
-                $this->user->active->workout->delete();
-                $this->user->active->delete();
-            }
-            $newActive = Active::create([
+            $newComplete = Complete::create([
                 'user_id' => $user_id,
-                'started_at' => Carbon::now(),
+                'started_at' => $this->started_at,
+                'completed_at' => Carbon::now(),
             ]);
-            $newWorkout = $this->workout->clone();
-            $newWorkout->workoutable()->associate($newActive);
-            $newWorkout->save(); 
-            return $newActive;
+            $this->workout->workoutable()->associate($newComplete)->save();
+            $this->delete();
+            return $newComplete;
         });
     }
 
     protected $fillable = [
         'user_id',
+        'started_at',
     ];
 }

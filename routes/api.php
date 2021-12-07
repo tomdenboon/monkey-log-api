@@ -28,11 +28,11 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/template', 'Api\TemplateController@store');
     Route::post('/template/{id}/clone', 'Api\TemplateController@clone');
 
-    //Route::get('/active', 'Api\WorkoutController@templateIndex');
-    //Route::post('/template/{id}/start', 'Api\WorkoutController@clone');
+    Route::get('/active', 'Api\ActiveController@get');
+    Route::post('/template/{id}/start', 'Api\ActiveController@start');
 
-    //Route::get('/finish', 'Api\WorkoutController@templateIndex');
-    //Route::post('/active/end', 'Api\WorkoutController@templateIndex');
+    Route::get('/complete', 'Api\CompleteController@index');
+    Route::post('/active/complete', 'Api\CompleteController@complete');
 
     Route::get('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@index');
     Route::post('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@store');
