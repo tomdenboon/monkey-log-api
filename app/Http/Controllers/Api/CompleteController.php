@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class CompleteController extends Controller
 {
     public function index(){
-        return CompleteResource::collection(auth()->user()->completes()->get());
+        return CompleteResource::collection(auth()->user()->completes()->orderBy('started_at', 'DESC')->get());
     }
 
     public function complete(){
