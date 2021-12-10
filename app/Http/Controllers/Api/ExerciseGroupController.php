@@ -45,6 +45,8 @@ class ExerciseGroupController extends Controller
         ]);  
         $group->weightedExercises()->create([
             'order' => 1,
+            'reps' => 0,
+            'weight' => 0,
         ]);
         return new ExerciseGroupResource($group);
     }

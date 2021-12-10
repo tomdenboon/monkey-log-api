@@ -39,8 +39,8 @@ class WeightedExerciseController extends Controller
     {
         $weighted_exercise = WeightedExercise::create([
             'exercise_group_id' => $exercise_group_id,
-            'reps' => $request->reps,
-            'weight' => $request->weight,
+            'reps' =>  $request->reps !== null ? $request->reps : 0,
+            'weight' => $request->weight !== null ? $request->weight : 0,
             'order' => $request->order,
         ]);
         return new WeightedExerciseResource($weighted_exercise->refresh());
