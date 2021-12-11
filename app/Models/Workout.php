@@ -31,6 +31,21 @@ class Workout extends Model
         return $newWorkout;
     }
 
+    public function deleteIncompleteExercises(){
+        forEach($this->exerciseGroups as $exerciseGroup){
+            forEach($exerciseGroup->weightedExercises as $weightedExercise){
+                if(!$weightedExercise->is_lifted){
+                    $weightedExercise->delete();
+                }
+            }
+            $exerciseGroup->refresh();
+            if($exerciseGroup->weightedExercises->count() == 0){
+                $exerciseGroup->delete();
+            }
+
+        }
+    }
+
     protected $fillable = [
         'name',
     ];

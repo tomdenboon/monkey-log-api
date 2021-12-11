@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\WeightedExercise;
+use App\Models\ExerciseGroup;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WeightedExerciseResource;
 use Illuminate\Http\Request;
@@ -37,10 +38,22 @@ class WeightedExerciseController extends Controller
      */
     public function store(Request $request, $exercise_group_id)
     {
+        $group = ExerciseGroup::findOrFail($exercise_group_id);
+        $is_lifted = false;
+        if($group->workout->workoutable_type == 'App\Models\Template'){
+            $is_lifted = false;
+        }
+        if($group->workout->workoutable_type == 'App\Models\Active'){
+            $is_lifted = $request->is_lifted;
+        }
+        if($group->workout->workoutable_type == 'App\Models\Complete'){
+            $is_lifted = true;
+        }
         $weighted_exercise = WeightedExercise::create([
             'exercise_group_id' => $exercise_group_id,
             'reps' =>  $request->reps !== null ? $request->reps : 0,
             'weight' => $request->weight !== null ? $request->weight : 0,
+            'is_lifted' => $is_lifted,
             'order' => $request->order,
         ]);
         return new WeightedExerciseResource($weighted_exercise->refresh());
@@ -78,6 +91,13 @@ class WeightedExerciseController extends Controller
     public function update(Request $request, $id)
     {
         $weighted_exercise = WeightedExercise::find($id);
+        $type = $weighted_exercise->exerciseGroup->workout->workoutable_type;
+        if($type == 'App\Models\Template'){
+            $request->is_lifted = false;
+        }
+        if($type == 'App\Models\Complete'){
+            $request->is_lifted = true;
+        }
         $weighted_exercise->update($request->all());
         return new WeightedExerciseResource($weighted_exercise);
     }

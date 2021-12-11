@@ -43,11 +43,16 @@ class ExerciseGroupController extends Controller
             'exercise_id' => $request->exercise_id,
             'order' => $request->order,
         ]);  
+        $is_lifted = 0;
+        if($group->workout->workoutable_type == 'App\Models\Complete'){
+            $is_lifted = 1;
+        }
         $group->weightedExercises()->create([
             'order' => 1,
             'reps' => 0,
             'weight' => 0,
-        ]);
+            'is_lifted' => $is_lifted,
+       ]);
         return new ExerciseGroupResource($group);
     }
 

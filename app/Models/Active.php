@@ -28,6 +28,7 @@ class Active extends Model
                 'completed_at' => Carbon::now(),
             ]);
             $this->workout->workoutable()->associate($newComplete)->save();
+            $this->workout->deleteIncompleteExercises();
             $this->delete();
             return $newComplete;
         });

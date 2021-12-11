@@ -32,6 +32,7 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/template/{id}/start', 'Api\ActiveController@start');
 
     Route::get('/complete', 'Api\CompleteController@index');
+    Route::get('/complete/{id}', 'Api\CompleteController@show');
     Route::post('/active/complete', 'Api\CompleteController@complete');
 
     Route::get('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@index');

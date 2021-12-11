@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Models\Complete;
 use App\Http\Resources\CompleteResource;
 use App\Http\Controllers\Controller;
 
@@ -18,5 +19,10 @@ class CompleteController extends Controller
             return new CompleteResource($newComplete);
         }
         return 'message: nothing active';
+    }
+
+    public function show($id)
+    {   
+        return new CompleteResource(Complete::findOrFail($id));
     }
 }
