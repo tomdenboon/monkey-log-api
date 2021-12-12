@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WeightedExercise extends Model
+class BasicExercise extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,5 @@ class WeightedExercise extends Model
 
     protected $fillable = [
         'reps',
-        'weight',
-        'rpe',
     ];
 }

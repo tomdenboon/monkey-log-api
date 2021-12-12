@@ -17,26 +17,32 @@ class ExerciseSeeder extends Seeder
         //
         Exercise::create([
             'name' => 'Bench Press',
+            'exercise_type' => 'App\Models\WeightedExercise',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Pull up',
+            'exercise_type' => 'App\Models\BasicExercise',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Chin up',
+            'exercise_type' => 'App\Models\BasicExercise',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Squat',
+            'exercise_type' => 'App\Models\WeightedExercise',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Deadlift',
+            'exercise_type' => 'App\Models\WeightedExercise',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Overhead press',
+            'exercise_type' => 'App\Models\WeightedExercise',
             'user_id' => '1'
         ]);
     }

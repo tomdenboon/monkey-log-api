@@ -16,7 +16,7 @@ class TemplateResource extends JsonResource
     {
         return  [
             'id' => $this->id,
-            'workout' => new FullWorkoutResource($this->workout)
+            'workout' => new WorkoutResource($this->workout)
         ];
     }
 }

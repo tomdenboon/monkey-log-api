@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Models\Workout;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WorkoutResource;
-use App\Http\Resources\FullWorkoutResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,7 +17,7 @@ class WorkoutController extends Controller
 
     public function show($id)
     {   
-        return new FullWorkoutResource(Workout::findOrFail($id));
+        return new WorkoutResource(Workout::findOrFail($id));
     }
 
     public function edit(Workout $workout)

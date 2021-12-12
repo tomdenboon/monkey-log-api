@@ -18,7 +18,7 @@ class CompleteResource extends JsonResource
             'id' => $this->id,
             'started_at' => $this->started_at,
             'completed_at' => $this->completed_at,
-            'workout' => new FullWorkoutResource($this->workout)
+            'workout' => new WorkoutResource($this->workout)
         ];
     }
 }

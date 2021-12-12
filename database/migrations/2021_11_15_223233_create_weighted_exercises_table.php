@@ -15,16 +15,11 @@ class CreateWeightedExercisesTable extends Migration
     {
         Schema::create('weighted_exercises', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('exercise_group_id');
-            $table->integer('reps')->nullable();
-            $table->integer('weight')->nullable();
-            $table->integer('one_rm')->nullable();
-            $table->integer('rpe')->nullable();
-            $table->integer('order');
-            $table->boolean('is_lifted')->nullable();
+            $table->integer('reps')->default(0);
+            $table->integer('weight')->default(0);
+            $table->integer('rpe')->default(0);
             $table->timestamps();
 
-            $table->foreign('exercise_group_id')->references('id')->on('exercise_groups')->onDelete('cascade');
         });
     }
 

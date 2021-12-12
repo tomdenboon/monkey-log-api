@@ -39,9 +39,9 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@store');
     Route::delete('/exercise_group/{id}', 'Api\ExerciseGroupController@destroy');
 
-    Route::post('/exercise_group/{id}/weighted_exercise', 'Api\WeightedExerciseController@store');
-    Route::put('/weighted_exercise/{id}', 'Api\WeightedExerciseController@update');
-    Route::delete('/weighted_exercise/{id}', 'Api\WeightedExerciseController@destroy');
+    Route::post('/exercise_group/{id}/exercise_row', 'Api\ExerciseRowController@store');
+    Route::put('/exercise_row/{id}', 'Api\ExerciseRowController@update');
+    Route::delete('/exercise_row/{id}', 'Api\ExerciseRowController@destroy');
 
     Route::get('/exercise', 'Api\ExerciseController@index');
     Route::post('/exercise', 'Api\ExerciseController@store');

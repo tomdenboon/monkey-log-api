@@ -18,9 +18,11 @@ class ExerciseGroupResource extends JsonResource
             'id' => $this->id,
             'workout_id' => $this->workout_id,
             'name' => $this->exercise->name,
+            'type' => $this->exercise->exercise_type,
             'order' => $this->order,
-            'sets' => $this->weightedExercises->count(),
-            'weighted_exercises' => WeightedExerciseResource::collection($this->weightedExercises),
-        ];
+            'sets' => $this->ExerciseRows->count(),
+            'exercise_rows' => ExerciseRowResource::collection($this->ExerciseRows),
+        ]; 
+       
     }
 }

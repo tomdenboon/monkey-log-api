@@ -17,7 +17,7 @@ class ActiveResource extends JsonResource
         return  [
             'id' => $this->id,
             'started_at' => $this->started_at,
-            'workout' => new FullWorkoutResource($this->workout)
+            'workout' => new WorkoutResource($this->workout)
         ];
     }
 }
