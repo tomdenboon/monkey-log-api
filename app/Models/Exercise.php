@@ -13,13 +13,17 @@ class Exercise extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     
+    public function exerciseType(){
+        return $this->belongsTo(ExerciseType::class, 'exercise_type_id');
+    }
+
     public function exerciseGroups(){
         return $this->hasMany(ExerciseGroup::class);
     }
 
     protected $fillable = [
         'name',
-        'exercise_type',
+        'exercise_type_id',
         'user_id',
     ];
 }

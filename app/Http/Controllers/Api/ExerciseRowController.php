@@ -26,7 +26,7 @@ class ExerciseRowController extends Controller
             $is_lifted = true;
         }
 
-        $exercise_row = $group->exerciseRow()->create([
+        $exercise_row = $group->exerciseRows()->create([
             'order' => 1,
             'is_lifted' => $is_lifted,
         ]);
