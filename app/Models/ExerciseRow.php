@@ -16,11 +16,17 @@ class ExerciseRow extends Model
 
     public function exercisable()
     {
+        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightedExercise"){
+            return $this->hasOne(WeightedExercise::class);
+        }
+        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightTimeExercise"){
+            return $this->hasOne(WeightTimeExercise::class);
+        }
         if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\BasicExercise"){
             return $this->hasOne(BasicExercise::class);
         }
-        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightedExercise"){
-            return $this->hasOne(WeightedExercise::class);
+        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\TimeExercise"){
+            return $this->hasOne(TimeExercise::class);
         }
     }
 

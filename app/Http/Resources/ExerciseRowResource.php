@@ -24,6 +24,15 @@ class ExerciseRowResource extends JsonResource
                 'weight' => $this->exercisable->weight,
                 'rpe' => $this->exercisable->rpe,
             ];
+        } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightTimeExercise") {
+            return  [
+                'id' => $this->id,
+                'exercise_group_id' => $this->exercise_group_id,
+                'is_lifted' => $this->is_lifted,
+                'order' => $this->order,
+                'weight' => $this->exercisable->weight,
+                'time' => $this->exercisable->time,
+            ];
         } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\BasicExercise") {
             return  [
                 'id' => $this->id,
@@ -31,6 +40,14 @@ class ExerciseRowResource extends JsonResource
                 'is_lifted' => $this->is_lifted,
                 'order' => $this->order,
                 'reps' => $this->exercisable->reps,
+            ];
+        } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\TimeExercise") {
+            return  [
+                'id' => $this->id,
+                'exercise_group_id' => $this->exercise_group_id,
+                'is_lifted' => $this->is_lifted,
+                'order' => $this->order,
+                'time' => $this->exercisable->time,
             ];
         }
     }

@@ -17,31 +17,41 @@ class ExerciseSeeder extends Seeder
         //
         Exercise::create([
             'name' => 'Bench Press',
-            'exercise_type_id' => '2',
+            'exercise_type_id' => '1',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Pull up',
-            'exercise_type_id' => '1',
+            'exercise_type_id' => '3',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Chin up',
-            'exercise_type_id' => '1',
+            'exercise_type_id' => '3',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Squat',
-            'exercise_type_id' => '2',
+            'exercise_type_id' => '1',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Deadlift',
-            'exercise_type_id' => '2',
+            'exercise_type_id' => '1',
             'user_id' => '1'
         ]);
         Exercise::create([
             'name' => 'Overhead press',
+            'exercise_type_id' => '1',
+            'user_id' => '1'
+        ]);
+        Exercise::create([
+            'name' => 'Dead hang',
+            'exercise_type_id' => '4',
+            'user_id' => '1'
+        ]);
+        Exercise::create([
+            'name' => 'Weighted Dead hang',
             'exercise_type_id' => '2',
             'user_id' => '1'
         ]);

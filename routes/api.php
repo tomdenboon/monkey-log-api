@@ -47,6 +47,8 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/exercise', 'Api\ExerciseController@store');
     Route::delete('/exercise/{id}', 'Api\ExerciseController@destroy');
 
+    Route::get('/exercise_type', 'Api\ExerciseTypeController@index');
+    
     Route::get('/user', function (Request $request) {
         return Auth::user();
     });
