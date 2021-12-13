@@ -26,26 +26,12 @@ class ExerciseRowController extends Controller
             $is_lifted = true;
         }
 
-        if($group->exercise->exercise_type == 'App\Models\WeightedExercise'){
-            $weighted_exercise = WeightedExercise::create($request->toArray());
-            $exercise_row = $weighted_exercise->ExerciseRow()->create([
-                'exercise_group_id' => $group->id,
-                'order' => 1,
-                'is_lifted' => $is_lifted,
-            ]);
-            return new ExerciseRowResource($exercise_row);
-        }
-        if($group->exercise->exercise_type == 'App\Models\BasicExercise'){
-            $basic_exercise = BasicExercise::create($request->toArray());
-            $exercise_row = $basic_exercise->ExerciseRow()->create([
-                'exercise_group_id' => $group->id,
-                'order' => 1,
-                'is_lifted' => $is_lifted,
-            ]);
-            return new ExerciseRowResource($exercise_row);
-        } else {
-            return response(404, ["message" => $group->exercise->exercise_type + " in exercise is not supported"]);
-        }
+        $exercise_row = $group->exerciseRow()->create([
+            'order' => 1,
+            'is_lifted' => $is_lifted,
+        ]);
+        $exercise_row->exercisable()->create($request->toArray());
+        return new ExerciseRowResource($exercise_row);
     }
     
     public function update(Request $request, $id)

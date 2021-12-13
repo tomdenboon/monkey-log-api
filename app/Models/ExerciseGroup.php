@@ -17,7 +17,7 @@ class ExerciseGroup extends Model
         return $this->belongsTo(Workout::class, 'workout_id');
     }
 
-    public function ExerciseRows(){
+    public function exerciseRows(){
         return $this->hasMany(ExerciseRow::class);
     }
 

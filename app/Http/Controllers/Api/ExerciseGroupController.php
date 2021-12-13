@@ -50,24 +50,11 @@ class ExerciseGroupController extends Controller
             $is_lifted = 1;
         }
 
-        if($group->exercise->exercise_type == 'App\Models\WeightedExercise'){
-            $weighted_exercise = WeightedExercise::create([]);
-            $exercise_row = $weighted_exercise->ExerciseRow()->create([
-                'exercise_group_id' => $group->id,
-                'order' => 1,
-                'is_lifted' => $is_lifted,
-            ]);
-        }
-        else if($group->exercise->exercise_type == 'App\Models\BasicExercise'){
-            $basic_exercise = BasicExercise::create([]);
-            $exercise_row = $basic_exercise->ExerciseRow()->create([
-                'exercise_group_id' => $group->id,
-                'order' => 1,
-                'is_lifted' => $is_lifted,
-            ]);
-        } else {
-            return response(["message" => $group->exercise->exercise_type . " in exercise is not supported"], 404);
-        }
+        $exercise_row = $group->exerciseRows()->create([
+            'order' => 1,
+            'is_lifted' => $is_lifted,
+        ]);
+        $exercise_row->exercisable()->create([]);
         return new ExerciseGroupResource($group);
     }
 

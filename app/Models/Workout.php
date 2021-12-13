@@ -23,26 +23,25 @@ class Workout extends Model
         $newWorkout->save();
         forEach($this->exerciseGroups as $exerciseGroup){
             $newExerciseGroup = $newWorkout->exerciseGroups()->create($exerciseGroup->toArray());
-            forEach($exerciseGroup->weightedExercises as $weightedExercise){
-                $newExerciseGroup->weightedExercises()->create($weightedExercise->toArray());
+            forEach($exerciseGroup->exerciseRows as $exerciseRow){
+                $newExerciseRow = $newExerciseGroup->exerciseRow()->create($exerciseRow->toArray());
+                $newExerciseRow->exercisable()->create($exerciseRow->exercisable->toArray());
             }
-
         }
         return $newWorkout;
     }
 
     public function deleteIncompleteExercises(){
         forEach($this->exerciseGroups as $exerciseGroup){
-            forEach($exerciseGroup->weightedExercises as $weightedExercise){
-                if(!$weightedExercise->is_lifted){
-                    $weightedExercise->delete();
+            forEach($exerciseGroup->exerciseRows as $exerciseRow){
+                if(!$exerciseRow->is_lifted){
+                    $exerciseRow->delete();
                 }
             }
             $exerciseGroup->refresh();
-            if($exerciseGroup->weightedExercises->count() == 0){
+            if($exerciseGroup->exerciseRows->count() == 0){
                 $exerciseGroup->delete();
             }
-
         }
     }
 

@@ -16,7 +16,6 @@ class CreateExerciseRowsTable extends Migration
         Schema::create('exercise_rows', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('exercise_group_id');
-            $table->morphs('exercisable');
             $table->boolean('is_lifted')->nullable();
             $table->integer('order');
             $table->timestamps();

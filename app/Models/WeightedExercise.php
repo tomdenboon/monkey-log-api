@@ -9,11 +9,12 @@ class WeightedExercise extends Model
 {
     use HasFactory;
 
-    public function ExerciseRow(){
-        return $this->morphOne(ExerciseRow::class, 'exercisable');
+    public function exerciseRow(){
+        return $this->belongsTo(ExerciseRow::class, 'exercise_row_id');
     }
 
     protected $fillable = [
+        'exercise_row_id',
         'reps',
         'weight',
         'rpe',

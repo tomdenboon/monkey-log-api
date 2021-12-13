@@ -20,8 +20,8 @@ class ExerciseGroupResource extends JsonResource
             'name' => $this->exercise->name,
             'type' => $this->exercise->exercise_type,
             'order' => $this->order,
-            'sets' => $this->ExerciseRows->count(),
-            'exercise_rows' => ExerciseRowResource::collection($this->ExerciseRows),
+            'sets' => $this->exerciseRows->count(),
+            'exercise_rows' => ExerciseRowResource::collection($this->exerciseRows),
         ]; 
        
     }

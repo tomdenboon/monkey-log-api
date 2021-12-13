@@ -14,7 +14,7 @@ class ExerciseRowResource extends JsonResource
      */
     public function toArray($request)
     {
-        if($this->exercisable_type == "App\Models\WeightedExercise") {
+        if($this->exerciseGroup->exercise->exercise_type == "App\Models\WeightedExercise") {
             return  [
                 'id' => $this->id,
                 'exercise_group_id' => $this->exercise_group_id,
@@ -24,7 +24,7 @@ class ExerciseRowResource extends JsonResource
                 'weight' => $this->exercisable->weight,
                 'rpe' => $this->exercisable->rpe,
             ];
-        } else if ($this->exercisable_type == "App\Models\BasicExercise") {
+        } else if ($this->exerciseGroup->exercise->exercise_type == "App\Models\BasicExercise") {
             return  [
                 'id' => $this->id,
                 'exercise_group_id' => $this->exercise_group_id,
