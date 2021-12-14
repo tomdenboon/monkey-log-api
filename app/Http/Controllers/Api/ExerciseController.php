@@ -16,7 +16,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        $exercises = auth()->user()->exercises()->get();
+        $exercises = auth()->user()->exercises()->orderBy('name', 'ASC')->get();
         return ExerciseResource::collection($exercises);
     }
 
