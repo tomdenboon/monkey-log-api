@@ -15,7 +15,6 @@ class TimeExercise extends Model
 
     protected $fillable = [
         'exercise_row_id',
-        'weight',
         'time',
     ];
 }

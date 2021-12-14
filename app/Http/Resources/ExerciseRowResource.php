@@ -14,42 +14,18 @@ class ExerciseRowResource extends JsonResource
      */
     public function toArray($request)
     {
-        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightedExercise") {
-            return  [
-                'id' => $this->id,
-                'exercise_group_id' => $this->exercise_group_id,
-                'is_lifted' => $this->is_lifted,
-                'order' => $this->order,
-                'reps' => $this->exercisable->reps,
-                'weight' => $this->exercisable->weight,
-                'rpe' => $this->exercisable->rpe,
-            ];
-        } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightTimeExercise") {
-            return  [
-                'id' => $this->id,
-                'exercise_group_id' => $this->exercise_group_id,
-                'is_lifted' => $this->is_lifted,
-                'order' => $this->order,
-                'weight' => $this->exercisable->weight,
-                'time' => $this->exercisable->time,
-            ];
-        } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\BasicExercise") {
-            return  [
-                'id' => $this->id,
-                'exercise_group_id' => $this->exercise_group_id,
-                'is_lifted' => $this->is_lifted,
-                'order' => $this->order,
-                'reps' => $this->exercisable->reps,
-            ];
-        } else if ($this->exerciseGroup->exercise->exerciseType->type == "App\Models\TimeExercise") {
-            return  [
-                'id' => $this->id,
-                'exercise_group_id' => $this->exercise_group_id,
-                'is_lifted' => $this->is_lifted,
-                'order' => $this->order,
-                'time' => $this->exercisable->time,
-            ];
-        }
+        $exercisable = $this->exercisable->toArray();
+        unset($exercisable["created_at"]);
+        unset($exercisable["updated_at"]);
+        unset($exercisable["exercise_row_id"]);
+        unset($exercisable["id"]);
+        return  [
+            'id' => $this->id,
+            'exercise_group_id' => $this->exercise_group_id,
+            'is_lifted' => $this->is_lifted,
+            'order' => $this->order,
+            'exercisable' => $exercisable,
+        ];
     }
 }
 

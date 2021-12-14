@@ -30,7 +30,7 @@ class ExerciseRowController extends Controller
             'order' => 1,
             'is_lifted' => $is_lifted,
         ]);
-        $exercise_row->exercisable()->create($request->toArray());
+        $exercise_row->exercisable()->create($request->exercisable);
         return new ExerciseRowResource($exercise_row);
     }
     
@@ -46,9 +46,9 @@ class ExerciseRowController extends Controller
         }
         $exercise_row->update([
             'is_lifted' => $request->is_lifted,
-            'order' => $request->order,
+            'order' => 1,
         ]);
-        $exercise_row->exercisable->update($request->all());
+        $exercise_row->exercisable->update($request->exercisable);
         return new ExerciseRowResource($exercise_row);
     }
 
