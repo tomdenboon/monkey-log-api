@@ -48,9 +48,10 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show(Exercise $exercise)
+    public function show($id)
     {
-        //
+       $exercise = auth()->user()->exercises()->findOrFail($id);
+       return new ExerciseResource($exercise);
     }
 
     /**
@@ -64,16 +65,13 @@ class ExerciseController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Exercise $exercise)
+    public function update(Request $request, $id)
     {
-        //
+        $exercise = auth()->user()->exercises()->findOrFail($id);
+        $exercise->update([
+            'name' => $request->name
+        ]);
+        return new ExerciseResource($exercise);
     }
 
     /**
