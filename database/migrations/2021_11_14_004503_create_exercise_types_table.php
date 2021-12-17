@@ -15,6 +15,7 @@ class CreateExerciseTypesTable extends Migration
     {
         Schema::create('exercise_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('type');
             $table->timestamps();
         });

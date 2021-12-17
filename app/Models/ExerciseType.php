@@ -15,5 +15,6 @@ class ExerciseType extends Model
 
     protected $fillable = [
         'type',
+        'name',
     ];
 }

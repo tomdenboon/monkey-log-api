@@ -15,15 +15,19 @@ class ExerciseTypeSeeder extends Seeder
     public function run()
     {
         ExerciseType::create([
+            'name' => 'Reps | Weight',
             'type' => 'App\Models\WeightedExercise',
         ]);
         ExerciseType::create([
+            'name' => 'Time | Weight',
             'type' => 'App\Models\WeightTimeExercise',
         ]);
         ExerciseType::create([
+            'name' => 'Reps',
             'type' => 'App\Models\BasicExercise',
         ]);
         ExerciseType::create([
+            'name' => 'Time',
             'type' => 'App\Models\TimeExercise',
         ]);
     }
