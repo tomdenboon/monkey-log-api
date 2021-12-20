@@ -7,6 +7,8 @@ use App\Models\Active;
 use App\Models\Template;
 use App\Http\Resources\ActiveResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ActiveController extends Controller
 {
@@ -22,5 +24,23 @@ class ActiveController extends Controller
         $template = Template::findOrFail($template_id);
         $active = $template->toActive();
         return new ActiveResource($active);
+    }
+
+    public function startEmpty(){    
+        return DB::transaction(function() {
+            $user = auth()->user();
+            if($user->active){
+                $user->active->workout->delete();
+                $user->active->delete();
+            }
+            $active = Active::create([
+                'user_id' => $user->id,
+                'started_at' => Carbon::now(),
+            ]);
+            $active->workout()->create([
+                "name" => "Empty workout"
+            ]); 
+            return new ActiveResource($active);
+        });
     }
 }

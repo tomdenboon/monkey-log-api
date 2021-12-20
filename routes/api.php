@@ -29,6 +29,7 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/template/{id}/clone', 'Api\TemplateController@clone');
 
     Route::get('/active', 'Api\ActiveController@get');
+    Route::post('/active/start_empty', 'Api\ActiveController@startEmpty');
     Route::post('/template/{id}/start', 'Api\ActiveController@start');
 
     Route::get('/complete', 'Api\CompleteController@index');
@@ -39,7 +40,7 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::post('/workout/{id}/exercise_group', 'Api\ExerciseGroupController@store');
     Route::delete('/exercise_group/{id}', 'Api\ExerciseGroupController@destroy');
 
-    Route::post('/exercise_group/{id}/exercise_row', 'Api\ExerciseRowController@store');
+    Route::post('/exercise_group/{id}/copy_last_row', 'Api\ExerciseRowController@copyLastRow');
     Route::put('/exercise_row/{id}', 'Api\ExerciseRowController@update');
     Route::delete('/exercise_row/{id}', 'Api\ExerciseRowController@destroy');
 

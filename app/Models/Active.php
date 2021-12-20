@@ -34,6 +34,7 @@ class Active extends Model
         });
     }
 
+    
     protected $fillable = [
         'user_id',
         'started_at',

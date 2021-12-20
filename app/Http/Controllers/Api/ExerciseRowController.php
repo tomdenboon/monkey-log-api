@@ -12,26 +12,15 @@ use Illuminate\Http\Request;
 
 class ExerciseRowController extends Controller
 {
-    public function store(Request $request, $exercise_group_id)
+    public function copyLastRow($exercise_group_id)
     {
         $group = ExerciseGroup::findOrFail($exercise_group_id);
-        $is_lifted = false;
-        if($group->workout->workoutable_type == 'App\Models\Template'){
-            $is_lifted = false;
-        }
-        if($group->workout->workoutable_type == 'App\Models\Active'){
-            $is_lifted = $request->is_lifted;
-        }
-        if($group->workout->workoutable_type == 'App\Models\Complete'){
-            $is_lifted = true;
-        }
-
-        $exercise_row = $group->exerciseRows()->create([
-            'order' => 1,
-            'is_lifted' => $is_lifted,
-        ]);
-        $exercise_row->exercisable()->create($request->exercisable);
-        return new ExerciseRowResource($exercise_row);
+        $exerciseRow = $group->exerciseRows()->orderBy('order', 'DESC')->first();
+        $newExerciseRow = $exerciseRow->replicate();
+        $newExerciseRow->order = $newExerciseRow->order + 1;
+        $newExerciseRow->save();
+        $newExerciseRow->exercisable()->create($exerciseRow->exercisable->toArray());
+        return new ExerciseRowResource($newExerciseRow);
     }
     
     public function update(Request $request, $id)
@@ -46,7 +35,6 @@ class ExerciseRowController extends Controller
         }
         $exercise_row->update([
             'is_lifted' => $request->is_lifted,
-            'order' => 1,
         ]);
         $exercise_row->exercisable->update($request->exercisable);
         return new ExerciseRowResource($exercise_row);
