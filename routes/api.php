@@ -26,7 +26,7 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
     Route::get('/template', 'Api\TemplateController@index');
     Route::get('/template/{id}', 'Api\TemplateController@show');
     Route::post('/template', 'Api\TemplateController@store');
-    Route::post('/template/{id}/clone', 'Api\TemplateController@clone');
+    Route::post('/workout/{id}/to-template', 'Api\TemplateController@clone');
 
     Route::get('/active', 'Api\ActiveController@get');
     Route::post('/active/start_empty', 'Api\ActiveController@startEmpty');

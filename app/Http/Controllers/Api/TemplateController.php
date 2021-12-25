@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Template;
+use App\Models\Workout;
 use App\Http\Resources\TemplateResource;
 use App\Http\Controllers\Controller;
 
@@ -26,13 +27,11 @@ class TemplateController extends Controller
         return new TemplateResource($template);
     }
 
-    public function clone($id)
+    public function clone($workout_id)
     {
-        $template = Template::findOrFail($id);
-        $newTemplate = Template::create([
-            'user_id' => 1,
-        ]);
-        $newWorkout = $template->workout->clone();
+        $workout = Workout::findOrFail($workout_id);
+        $newTemplate = auth()->user()->templates()->create([]);
+        $newWorkout = $workout->clone();
         $newWorkout->workoutable()->associate($newTemplate);
         $newWorkout->name = $newWorkout->name.' Copy';
         $newWorkout->save();

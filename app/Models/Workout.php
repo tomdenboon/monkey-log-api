@@ -24,6 +24,7 @@ class Workout extends Model
         forEach($this->exerciseGroups as $exerciseGroup){
             $newExerciseGroup = $newWorkout->exerciseGroups()->create($exerciseGroup->toArray());
             forEach($exerciseGroup->exerciseRows as $exerciseRow){
+                $exerciseRow->is_lifted = FALSE;
                 $newExerciseRow = $newExerciseGroup->exerciseRows()->create($exerciseRow->toArray());
                 $newExerciseRow->exercisable()->create($exerciseRow->exercisable->toArray());
             }
