@@ -52,6 +52,8 @@ Route::middleware('auth:api')->prefix("v1")->group(function(){
 
     Route::get('/exercise_type', 'Api\ExerciseTypeController@index');
     
+    Route::get('/statistic/general', 'Api\StatisticController@general');
+
     Route::get('/user', function (Request $request) {
         return Auth::user();
     });

@@ -14,7 +14,7 @@ class ActiveFactory extends Factory
     public function definition()
     {
         return [
-            //
+            ''
         ];
     }
 }

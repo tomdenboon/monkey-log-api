@@ -14,7 +14,8 @@ class ExerciseGroupFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'exercise_id' => $this->faker->numberBetween(1, 4),
+            'order' => 1,
         ];
     }
 }

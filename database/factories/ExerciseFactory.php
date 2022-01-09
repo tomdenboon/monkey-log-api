@@ -14,7 +14,8 @@ class ExerciseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'exercise_type_id' => "1",
         ];
     }
 }

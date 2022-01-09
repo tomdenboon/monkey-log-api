@@ -30,10 +30,14 @@ class ExerciseRow extends Model
         }
     }
 
-    function delete()
+    public function getReps()
     {
-        $this->exercisable()->delete(); 
-        parent::delete();
+        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\WeightedExercise"){
+            return $this->exercisable->reps;
+        }
+        if($this->exerciseGroup->exercise->exerciseType->type == "App\Models\BasicExercise"){
+            return $this->exercisable->reps;
+        }
     }
 
     protected $fillable = [

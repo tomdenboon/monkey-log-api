@@ -14,7 +14,8 @@ class ExerciseRowFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'is_lifted' => true,
+            'order' => 1,
         ];
     }
 }
