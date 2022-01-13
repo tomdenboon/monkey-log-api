@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->has(
             Exercise::factory()->count(10)
         )->has(
-            Complete::factory()->count(1000)->has(
+            Complete::factory()->count(100)->has(
                 Workout::factory()->has(
                     ExerciseGroup::factory()->count(6)->has(
                         ExerciseRow::factory()->count(5)->has(
